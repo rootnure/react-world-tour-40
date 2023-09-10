@@ -1,0 +1,9 @@
+.country {
+    border: 2px solid steelblue;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.max-h-32 {
+    max-height: 128px;
+}
