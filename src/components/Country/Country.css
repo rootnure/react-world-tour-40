@@ -7,3 +7,13 @@
 .max-h-32 {
     max-height: 128px;
 }
+
+.visited {
+    background-color: bisque;
+    color: black;
+}
+
+.not-visited {
+    background-color: transparent;
+    color: white;
+}
