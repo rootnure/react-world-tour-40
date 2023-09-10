@@ -9,6 +9,7 @@ const Country = ({ country, visitedCountries, setVisitedCountries }) => {
     }
 
     const addNewVisited = country => {
+        // check duplicate and set new visited
         const newVisited = visitedCountries.map(visited => visited?.name?.common).includes(country?.name?.common) ? [...visitedCountries] : [...visitedCountries, country];
         setVisitedCountries(newVisited);
     }

@@ -1,27 +1,42 @@
 import { useEffect, useState } from "react";
 import './Countries.css';
 import Country from "../Country/Country";
+import VisitedCountries from "../VisitedCountries/VisitedCountries";
 
 const Countries = () => {
-    
-  const [countries, setCountries] = useState([]);
 
-  const [visitedCountries, setVisitedCountries] = useState([]);
+    const [countries, setCountries] = useState([]);
 
-  useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
-    .then(res => res.json())
-    .then(data => setCountries(data));
-  }, []);
+    const [visitedCountries, setVisitedCountries] = useState([]);
+
+    useEffect(() => {
+        fetch('https://restcountries.com/v3.1/all')
+            .then(res => res.json())
+            .then(data => setCountries(data));
+    }, []);
+
+    const resultStyles = {
+        backgroundColor: '#000000C9',
+        padding: '5px 50px',
+        margin: '0px -50px',
+        borderRadius: '20px',
+        marginBottom: '20px',
+        top: '0px'
+    };
+
     return (
-        <>
-            <h3>Countries: {countries.length}</h3>
-            <h3>Visited: {visitedCountries.length}</h3>
-            <ul>
-                {
-                    visitedCountries.map((visited, idx) => <li key={idx}>{visited.name.common}</li>)
-                }
-            </ul>
+        <div className=" relative">
+            <div className="max-h-76 sticky" style={resultStyles}>
+                <h3>Countries: {countries.length}</h3>
+                <VisitedCountries
+                    visitedCountries={visitedCountries}
+                ></VisitedCountries>
+                <div className="flags-container">
+                    {
+                        visitedCountries.length ? visitedCountries.map((visited, idx) => <img style={{ height: '32px' }} key={idx} src={visited.flags.png} />) : ""
+                    }
+                </div>
+            </div>
             <div className="country-container">
                 {
                     countries.map(country =>
@@ -34,7 +49,7 @@ const Countries = () => {
                     )
                 }
             </div>
-        </>
+        </div>
     );
 };
 
